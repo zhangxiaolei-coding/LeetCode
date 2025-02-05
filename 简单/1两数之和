@@ -32,3 +32,29 @@
 
 进阶：你可以想出一个时间复杂度小于 O(n2) 的算法吗？
 **/
+
+解法1：暴力解决
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        //暴力解法
+        Boolean bol = false;
+        for(int i=0; i<nums.length; i++) {
+            int y;
+            int yus = target - nums[i];
+            for(y=i+1; y<nums.length; y++) {
+                if(yus == nums[y]) {
+                    bol = true;
+                    break;
+                }
+            }
+            if(bol) {
+                return new int[]{i,y};
+            }
+        }
+        return null;
+    }
+}
+解题思路：拿到数组的一个数字后，跟target进行计算，然后判断获取两个数值之间的差数，在数组中是否存在，存在的话返回两个数值的数组下标。
+优点：思路简单，易于理解；
+缺点：求解的算法中嵌套了两层for循环，时间复杂度较高O(n^2);
+
