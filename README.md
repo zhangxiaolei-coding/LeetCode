@@ -1,2 +1,2 @@
 # LeetCode
-LeetCode练习思考
+LeetCode练习，个人思考整理
