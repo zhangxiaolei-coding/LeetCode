@@ -33,6 +33,24 @@
 进阶：你可以想出一个时间复杂度小于 O(n2) 的算法吗？
 **/
 
+解法2:  hash表（官方解法）
+解法思路：之前想到针对查询target-nums[i]数据，可以利用Map的方法，然后判断target-nums[i]在map中利用containKey判断是否存在，然后返回两个下标，但是在思考时下意识的将数组nums转化为map时单独用个for循环处理，导致时间复杂度为O(2n)。在官方解法中，没有针对数组转化为map做处理，直接在用初始化的空map一边存nums[i]数值，一边进行判断，这样处理不仅可以去除数组转化map的复杂度，同时也避免后续需要判断同一个下标数据相加的情况，eg.[3,2,4,5], target = 6;
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+         //哈希表解法
+         Map<Integer, Integer> hashtable = new HashMap<>();
+         for(int i=0; i<nums.length; i++) {
+            if(hashtable.containsKey(target-nums[i])) {
+                return new int[]{hashtable.get(target - nums[i]), i};
+            }
+            hashtable.put(nums[i], i);
+         }
+        return null;
+    }
+}
+
+---------------------------------------------------------------------------
+
 解法1：暴力枚举
 class Solution {
     public int[] twoSum(int[] nums, int target) {
