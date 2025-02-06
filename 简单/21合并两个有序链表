@@ -36,8 +36,27 @@ l1 和 l2 均按 非递减顺序 排列
  * }
  */
 
+解法二：递归
+解题思路：两个有序链表合并为一个链表的问题，其实是比较哪个节点小就先存哪个节点。这里发现每次的操作都是相同的，即母问题与子问题一致，可以采用递归的方法进行，比较谁小就先存谁。
+class Solution {
+    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+        //解法二 递归
+        if(list1 == null) {
+            return list2;
+        } else if(list2 == null) {
+            return list1;
+        } else if(list1.val > list2.val) {
+            list2.next = mergeTwoLists(list1, list2.next);
+            return list2;
+        } else {
+            list1.next = mergeTwoLists(list1.next, list2);
+            return list1;
+        }
+    }
+}
+
 --------------------------------------------------------------------
-解法一：按链表顺序比较插入
+解法一：按链表顺序比较插入（暴力）
 解题思路：针对连个链表，进行比较，将小的数值存入链表3，知道一方结束，剩余一方按顺序存入链表3. 时间复杂度O(n)
 class Solution {
     public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
